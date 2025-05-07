@@ -1,11 +1,14 @@
 package com.eternity.linksaver.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
-import org.springframework.security.core.userdetails.User;
+import lombok.Data;
 
 @Entity
+@Data
 public class Link {
     @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     private String url;
@@ -13,6 +16,7 @@ public class Link {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private User user;
+    @JsonBackReference
+    private Users user;
 
 }
