@@ -21,7 +21,9 @@ public class SecurityConfig {
                         .requestMatchers("/user/register").permitAll() // allow registration
                         .anyRequest().authenticated()
                 )
-                .formLogin(Customizer.withDefaults()) // enables inbuilt login form
+                .formLogin(form -> form
+                        .defaultSuccessUrl("/", true)
+                ) // enables inbuilt login form
                 .httpBasic(Customizer.withDefaults());
 
         return http.build();
